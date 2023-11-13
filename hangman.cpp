@@ -45,7 +45,7 @@ int main(){
     srand(static_cast<unsigned int>(time(nullptr))); 
 
     //array nama-nama hewan
-    vector<string> words = {"singa", "buaya", "hiu"}; 
+    vector<string> words = {"singa", "buaya", "hiu", "anjing", "gajah", "sapi", "komodo", "tokek", "cicak", "babi", "rusa", "gorilla", "monyet", "ular", "elang", "paus", "salmon", "barakuda"}; 
 
     //kata yang akan ditebak
     string secretWord = chooseRandomWord(words); 
