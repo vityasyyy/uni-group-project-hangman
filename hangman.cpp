@@ -40,7 +40,7 @@ struct Leaderboard {
         cout << "\nLeaderboard:\n";
         int rank = 1;
         for (const auto& player : players) {
-            cout << rank << '. '<< "Username: " << player.username << ", Score: " << player.score << endl;
+            cout << rank << ". "<< "Username: " << player.username << ", Score: " << player.score << endl;
             rank++;
         }   //display the leaderboard
     }
@@ -73,7 +73,9 @@ int main() {
 
     char playAgain;
     do {
-        cout << "Tebak suatu nama hewan" << '\n';
+        cout << "***************" << '\n';
+        cout << "Guess an animal" << '\n';
+        cout << "***************" << '\n';
 
         string playerName;
         cout << "Enter your username (no spaces allowed): ";
@@ -83,7 +85,7 @@ int main() {
 
         srand(static_cast<unsigned int>(time(nullptr))); 
 
-        vector<string> words = {"singa", "buaya", "hiu", "anjing", "gajah", "sapi", "komodo", "tokek", "cicak", "babi", "rusa", "gorilla", "monyet", "ular", "elang", "paus", "salmon", "barakuda", "zebra", "jerapah", "lele", "belalang", "kelelawar", "kuda", "semut", "cacing"}; 
+        vector<string> words = {"lion", "alligator", "shark", "dog", "elephant", "cow", "komodo", "gecko", "pig", "deer", "gorilla", "monkey", "snake", "eagle", "whale", "salmon", "baraccuda", "zebra", "giraffe", "catfish", "cicada", "bat", "horse", "ant", "worm", "dragonfly"}; 
 
         string secretWord = chooseRandomWord(words); 
 
@@ -93,42 +95,40 @@ int main() {
 
         bool found = false; 
 
-        std::cout << "Tebak suatu nama hewan" << '\n';
-
         while(remainingAttempts > 0 && !found){
-            cout << "Kata: " << displayWord(secretWord, guessedLetters) << '\n';
-            cout << "Huruf yang telah ditebak: " << guessedLetters << '\n';
-            cout << "Nyawa: " << remainingAttempts << '\n';
+            cout << "Word: " << displayWord(secretWord, guessedLetters) << '\n';
+            cout << "Guessed letters: " << guessedLetters << '\n';
+            cout << "Lives: " << remainingAttempts << '\n';
 
             char guess;
-            cout << "Tebak satu huruf: ";
+            cout << "Guess a word: ";
             cin >> guess;
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); //clears input buffer
             
             if(guessedLetters.find(guess) != string::npos){ //if the new guess is already at the guessedLetters string
-                cout << "Anda telah menebak huruf tersebut" << '\n';
+                cout << "You guessed that letter already" << '\n';
                 continue;
             }
 
             guessedLetters += guess; 
 
             if(secretWord.find(guess) != string::npos){ //if the letter that we guess is in the secretWord
-                cout << "Tebakan anda benar" << '\n' << '\n';
+                cout << "Correct guess" << '\n' << '\n';
             }
             else{
-                cout << "Tebakan anda salah" << '\n' << '\n';
+                cout << "Wrong guess" << '\n' << '\n';
                 remainingAttempts--;
             }
 
             if(displayWord(secretWord, guessedLetters) == secretWord){ 
-                cout << "Selamat, anda menebak kata yang benar, kata yang ditebak: " << secretWord<< '\n';
+                cout << "CONGRATULATIONS, you guessed the right word, word: " << secretWord<< '\n';
                 found = true;        
             }
         }
         
         if(remainingAttempts == 0){
-            cout << "Maaf, kamu kalah. Kata rahasia adalah: " << secretWord << '\n';
+            cout << "YOU LOSE, the secret word: " << secretWord << '\n';
         }
 
             double tempScore = (remainingAttempts / secretWord.length()) * 10.0; //calculate the scores of the user
